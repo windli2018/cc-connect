@@ -2324,6 +2324,28 @@ app_secret = "your-feishu-app-secret"
 # [projects.platforms.options]
 # token = "your-telegram-bot-token"
 
+# -----------------------------------------------------------------------------
+# Example: pi-web session (native ACP over Unix socket, no subprocess) / pi-web 会话（ACP over Unix socket 直连，无需任何子进程）
+# -----------------------------------------------------------------------------
+# The pi-web app runs an in-process ACP server listening on a Unix socket
+# (aiti-channels extension). type="piweb" dials that socket directly and
+# reuses the full ACP session machinery — no connector subprocess, a shorter
+# chain than type="acp" + a connector command.
+# The exact socket path is printed by pi-web at startup
+# ("[aiti-channels][acp] server listening ..."); the default instance uses
+# ~/.pi/web/data/aiti-channels/config/acp/default.sock on Linux/macOS.
+#
+# [[projects]]
+# name = "piweb-demo"
+#
+# [projects.agent]
+# type = "piweb"
+#
+# [projects.agent.options]
+# work_dir = "/path/to/project"
+# socket = "~/.pi/web/data/aiti-channels/config/acp/default.sock"  # pi-web ACP socket
+# display_name = "pi-web"
+
 # =============================================================================
 # Project 8: Another example / 项目 8：更多示例 (uncomment to enable / 取消注释以启用)
 # =============================================================================
